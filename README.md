@@ -1,6 +1,6 @@
 # Taller_1Programacion
 
-Maikol Javier Lopez Cadema--
+Maikol Javier Lopez Cadema
 
 Julián Leonardo Arias Pita
 
