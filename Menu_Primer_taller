@@ -1,0 +1,235 @@
+import java.util.Scanner;
+
+public class Menu {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int op = 0;
+
+		while (op != 7) {
+			System.out.println("Digite la opción que desea ver ");
+			System.out.println("1. Numeros Romanos\n" + "2. Factores Primos\n" + "3. Borrar espacios\n"
+					+ "4. Numeros Egolatras\n" + "5. Numero Magico\n" + "6. Fechas \n" + "7. Salir ");
+			try {
+				op = sc.nextInt();
+			} catch (java.util.InputMismatchException e) {
+				System.out.println("Digito no valido");
+				sc.nextLine();
+				System.out.println("Digite el numero del que desea saber si es egolatra");
+				op = sc.nextInt();
+			}
+			switch (op) {
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				int numero = 0;
+				System.out.println("Digite el numero del que desea saber si es egolatra ");
+				try {
+					numero = sc.nextInt();
+				} catch (java.util.InputMismatchException e) {
+					System.out.println("Digito no valido");
+
+					sc.nextLine();
+					System.out.println("Digite el numero del que desea saber si es egolatra");
+					numero = sc.nextInt();
+				}
+
+				String cadena = "";
+				int digitos = (int) (Math.log10(numero) + 1);
+				int array[] = new int[digitos];
+				cadena = Integer.toString(numero);
+				int n = 0;
+				boolean numEg = true;
+				char c[] = new char[digitos];
+				int b[] = new int[digitos];
+				int h = 0;
+				for (int i = 0; i < array.length; i++) {
+
+					c[i] = cadena.charAt(i);
+
+					b[i] = Character.getNumericValue(c[i]);
+
+				}
+				for (int i = 0; i < b.length; i++) {
+					n = (int) Math.pow(b[i], digitos);
+					h += n;
+
+				}
+				if (h == numero) {
+					numEg = true;
+					System.out.println(numEg);
+				} else {
+					numEg = false;
+					System.out.println(numEg);
+				}
+				break;
+			case 5:
+				int numero1 = 0;
+				System.out.println("Digite el numero del que desea saber su condicion");
+				try {
+					numero1 = sc.nextInt();
+				} catch (java.util.InputMismatchException e) {
+					System.out.println("Digito no valido");
+
+					sc.nextLine();
+					System.out.println("Digite el numero del que desea saber su condicion");
+					numero1 = sc.nextInt();
+				}
+
+				String cadena1 = "";
+				int digitos1 = (int) (Math.log10(numero1) + 1);
+				int array1[] = new int[digitos1];
+				cadena1 = Integer.toString(numero1);
+
+				char c1[] = new char[digitos1];
+				for (int i = 0; i < array1.length; i++) {
+
+					c1[i] = cadena1.charAt(i);
+
+				}
+
+				char c2[] = ordenar(c1);
+
+				int num1 = contains(c2);
+
+				char c3[] = ordenMayor(c1);
+
+				int num2 = contains(c3);
+				if (num1 - num2 == numero1) {
+					System.out.println("True");
+				} else {
+					System.out.println("False");
+				}
+				break;
+			case 6:
+				int fecha1 = 0;
+				String[] array11 = { "0", "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto",
+						"septiembre", "octubre", "noviembre", "diciembre" };
+
+				int fecha3 = 0;
+				int fec = 0;
+				int a = 0;
+				System.out.println("Digite el dia ");
+				try {
+					fecha1 = sc.nextInt();
+				} catch (java.util.InputMismatchException e) {
+					System.out.println("Digito no valido");
+
+					sc.nextLine();
+					System.out.println("Digite el dia");
+					fecha1 = sc.nextInt();
+				}
+
+				System.out.println("Digite el mes");
+				try {
+					fec = sc.nextInt();
+				} catch (java.util.InputMismatchException e) {
+					System.out.println("Digito no valido");
+
+					sc.nextLine();
+					System.out.println("Digite el mes");
+					fec = sc.nextInt();
+				}
+				System.out.println("Digite el año");
+				try {
+					fecha3 = sc.nextInt();
+				} catch (java.util.InputMismatchException e) {
+					System.out.println("Digito no valido");
+
+					sc.nextLine();
+					System.out.println("Digite el año");
+					fecha3 = sc.nextInt();
+				}
+
+				for (int i = 0; i < 12; i++) {
+					if (i == fec) {
+						a = i;
+					}
+				}
+
+				int bis = 1960;
+				boolean res = true;
+				for (int i = bis; i < 2028; i += 4) {
+
+					if (fecha3 == i) {
+						res = true;
+						i = 9999;
+
+					} else {
+						res = false;
+
+					}
+
+				}
+				boolean p = true;
+				if (fecha1 >= 29 && fec == 2) {
+
+					p = false;
+
+				}
+				if (fecha1 == 29 && fec == 2 && res == true) {
+					System.out.println("año biciesto ");
+					System.out.println(fecha1 + "/ de " + array11[a] + "/" + fecha3);
+
+				} else if (array11[a] != null && fecha1 < 31 && p == true) {
+					System.out.println(fecha1 + "/ de " + array11[a] + "/" + fecha3);
+				} else {
+					System.out.println("null");
+				}
+				break;
+			case 7:
+				System.out.println("Gracias por usar el software");
+				break;
+			default:
+				System.out.println("Opción no valida");
+				break;
+			}
+
+		}
+	}
+
+	public static int contains(final char[] arr) {
+		int number = Integer.parseInt(new String(arr));
+		return number;
+	}
+
+	static int temp = 0;
+
+	public static char[] ordenar(char[] lista) {
+
+		for (int i = 0; i < lista.length; i++) {
+			for (int j = i + 1; j < lista.length; j++) {
+				if (lista[i] < lista[j]) {
+
+					temp = lista[i];
+					lista[i] = lista[j];
+					lista[j] = (char) temp;
+				}
+			}
+		}
+		return lista;
+	}
+
+	static int tempo;
+
+	public static char[] ordenMayor(char[] listado) {
+
+		for (int i = 0; i < listado.length; i++) {
+			for (int j = i + 1; j < listado.length; j++) {
+				if (listado[i] > listado[j]) {
+
+					tempo = listado[i];
+					listado[i] = listado[j];
+					listado[j] = (char) tempo;
+				}
+			}
+		}
+		return listado;
+	}
+
+}
