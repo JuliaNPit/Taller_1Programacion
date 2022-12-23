@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Menu {
+public class Taller01{
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -8,7 +8,7 @@ public class Menu {
 		int op = 0;
 
 		while (op != 7) {
-			System.out.println("Digite la opción que desea ver ");
+			System.out.println("Digite la opcion que desea ver ");
 			System.out.println("1. Numeros Romanos\n" + "2. Factores Primos\n" + "3. Borrar espacios\n"
 					+ "4. Numeros Egolatras\n" + "5. Numero Magico\n" + "6. Fechas \n" + "7. Salir ");
 			try {
@@ -21,10 +21,61 @@ public class Menu {
 			}
 			switch (op) {
 			case 1:
+				System.out.println("Ingrese el numero romano");
+				String romano = sc.next().toUpperCase();
+
+				char[] Romano = {' ', 'I', 'V', 'X', 'L', 'C', 'D', 'M'};
+				int[] valor = {0, 1, 5, 10, 50, 100, 500, 1000};
+
+				int ant = 0;
+				double suma = 0;
+				char letra = ' ';
+
+				for (int i = 0; i < romano.length(); i++) {
+					letra = romano.charAt(i);
+					for (int j = 0; j < Romano.length; j++) {
+						if (letra == Romano[j]) {
+							suma = suma + valor[j];
+							if (ant < valor[j]) {
+								suma = suma - ant * 2;
+								ant = valor[j];
+							} else {
+								ant = valor[j];
+							}
+						}
+					}
+				}
+
+				System.out.println("El numero es: "+suma);
 				break;
 			case 2:
+				System.out.println("Ingrese un numero");
+				int num = sc.nextInt();
+
+
+				System.out.println("Sus factores expresados en potencia son:");
+
+				int contador =0;
+				for (int i = 2; i < num; i++) {
+					while (num % i == 0) {
+						num = num / i;
+						contador++;
+					}
+					if (contador!=0){
+
+						System.out.println(i+"^"+contador);
+					}
+					contador=0;
+				}
 				break;
 			case 3:
+				System.out.println("ingrese el texto");
+				sc.nextLine();
+
+				String Text = sc.nextLine();
+				String result = Text.replaceAll("\\s+","");
+
+				System.out.println(result);
 				break;
 			case 4:
 				int numero = 0;
@@ -135,14 +186,14 @@ public class Menu {
 					System.out.println("Digite el mes");
 					fec = sc.nextInt();
 				}
-				System.out.println("Digite el año");
+				System.out.println("Digite el aÃ±o");
 				try {
 					fecha3 = sc.nextInt();
 				} catch (java.util.InputMismatchException e) {
 					System.out.println("Digito no valido");
 
 					sc.nextLine();
-					System.out.println("Digite el año");
+					System.out.println("Digite el aÃ±o");
 					fecha3 = sc.nextInt();
 				}
 
@@ -186,7 +237,7 @@ public class Menu {
 				System.out.println("Gracias por usar el software");
 				break;
 			default:
-				System.out.println("Opción no valida");
+				System.out.println("Opcion no valida");
 				break;
 			}
 
